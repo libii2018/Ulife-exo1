@@ -14,19 +14,24 @@ const Navbar = () => {
   return (
     <div>
       {hasCookies ? (
-        <ul>
-          <li>
-            <button onClick={logout}>Deconnexion</button>
-          </li>
+        <ul className="flex items-center p-2 gap-2 bg-gpt-gray text-white justify-between">
           <li>
             <Link href="/">Chat</Link>
           </li>
           <li>
-            <Link href="/enregistrer">Enregistrer</Link>
+            <button
+              className="p-2 bg-red-500 hover:bg-red-500/75 rounded"
+              onClick={logout}
+            >
+              Deconnexion
+            </button>
           </li>
         </ul>
       ) : (
         <ul>
+          <li>
+            <Link href="/enregistrer">Enregistrer</Link>
+          </li>
           <li>
             <Link href="/connecter">Connecter</Link>
           </li>

@@ -13,10 +13,10 @@ export const Footer = ({ disabled, onSendMessage }: Props) => {
           disabled={disabled}
           onSend={onSendMessage}
         ></ChatMessageInput>
-        <div className="">
+        {/* <div className="">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta
           delectus repellendus quam impedit
-        </div>
+        </div> */}
       </div>
     </footer>
   );

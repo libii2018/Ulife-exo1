@@ -1,5 +1,7 @@
+import { ChatMessage } from "./types/ChatMessage";
+
 export async function postData(
-  prompt: string = "",
+  prompts: ChatMessage[],
   path: string = ""
 ): Promise<string> {
   try {
@@ -7,12 +9,13 @@ export async function postData(
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        prompt: prompt,
+        prompts: prompts,
       }),
     }).then((res) => {
+      console.log(res);
       return res.json();
     });
-    if (prompt === "") {
+    if (prompts.length === 0) {
       return response.error;
     }
     console.log(response.response);

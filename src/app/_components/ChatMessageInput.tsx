@@ -39,11 +39,11 @@ export const ChatMessageInput = ({ disabled, onSend }: Props) => {
     >
       <textarea
         ref={textEl}
-        className="flex-1 border-0 bg-transparent resize-none outline-none h-7 max-h-48 overflow-auto"
+        className="flex-1 border-0 bg-transparent text-white resize-none outline-none h-7 max-h-48 overflow-auto"
         placeholder="Un message"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onkeyup={handleTextKeyUp}
+        onKeyUp={handleTextKeyUp}
         disabled={disabled}
       ></textarea>
       <div

@@ -1,6 +1,6 @@
 import { ChatMessage } from "../types/ChatMessage";
 import IconRobot from "./icons/IconRobot";
-import IconUser from "./icons/iconUser";
+import IconUser from "./icons/IconUser";
 
 type Props = {
   item: ChatMessage;
@@ -19,7 +19,7 @@ export const ChatMessageItem = ({ item }: Props) => {
             <IconRobot width={24} height={24}></IconRobot>
           )}
         </div>
-        <div className="flex text-base whitespace-pre-wrap">{item.body}</div>
+        <div className="flex text-white whitespace-pre-wrap">{item.body}</div>
       </div>
     </div>
   );

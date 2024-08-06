@@ -28,7 +28,7 @@ export default function Home() {
   }, [chatActiveId, chatList]);
 
   useEffect(() => {
-    const result: Promise<string> = postData("", "/api/getResponse");
+    const result: Promise<string> = postData([], "/api/getResponse");
     setPrompt(result);
   }, []);
 
@@ -39,22 +39,22 @@ export default function Home() {
   const openSidebar = () => setSiderbarOpened(true);
   const closeSidebar = () => setSiderbarOpened(false);
 
-  const getAIResponse = () => {
-    setTimeout(() => {
-      let chatListClone = [...chatList];
-      let chatIndex = chatListClone.findIndex(
-        (item) => item.id === chatActiveId
+  const getAIResponse = async () => {
+    let chatListClone = [...chatList];
+    let chatIndex = chatListClone.findIndex((item) => item.id === chatActiveId);
+    if (chatIndex > -1) {
+      const response = await postData(
+        chatListClone[chatIndex].messages,
+        "/api/getResponse"
       );
-      if (chatIndex > -1) {
-        chatListClone[chatIndex].messages.push({
-          id: uuidv4(),
-          author: "ai",
-          body: "Question ia",
-        });
-      }
-      setChatList(chatListClone);
-      setAILoading(false);
-    }, 2000);
+      chatListClone[chatIndex].messages.push({
+        id: uuidv4(),
+        author: "ai",
+        body: response,
+      });
+    }
+    setChatList(chatListClone);
+    setAILoading(false);
   };
 
   const handleClearConversations = () => {
@@ -65,6 +65,7 @@ export default function Home() {
   const handleSendMessage = (message: string) => {
     if (!chatActiveId) {
       // Creating new chat
+
       let newChatId = uuidv4();
       setChatList([
         {
@@ -89,6 +90,7 @@ export default function Home() {
     }
     setAILoading(true);
   };
+
   const handleNewChat = () => {
     if (AILoading) return;
     setChatActiveId("");
